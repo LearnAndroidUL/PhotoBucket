@@ -23,7 +23,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter.MovieQuoteViewHolder>{
+public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter.PhotoBucketViewHolder>{
     private List<DocumentSnapshot> mPhotoBucketSnapshots = new ArrayList<>();
     private RecyclerView mRecyclerView;
 
@@ -46,7 +46,7 @@ public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter
     }
 
 
-    public void removeMovieQuote(int position){
+    public void removePhotoBucket(int position){
         mPhotoBucketSnapshots.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(0, mPhotoBucketSnapshots.size());
@@ -60,18 +60,18 @@ public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter
 
     @NonNull
     @Override
-    public MovieQuoteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public PhotoBucketViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.itemview_photobucket,viewGroup, false);
-        return new MovieQuoteViewHolder(itemView);
+        return new PhotoBucketViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieQuoteViewHolder movieQuoteViewHolder, int i) {
-        DocumentSnapshot movieQuote = mPhotoBucketSnapshots.get(i);
-        String quote = (String) movieQuote.get(Constants.KEY_CAPTION);
-        movieQuoteViewHolder.mQuoteTextView.setText(quote);
-        String movie = (String) movieQuote.get(Constants.KEY_URL);
-        movieQuoteViewHolder.mMovieTextView.setText(movie);
+    public void onBindViewHolder(@NonNull PhotoBucketViewHolder photoBucketViewHolder, int i) {
+        DocumentSnapshot photoBucket = mPhotoBucketSnapshots.get(i);
+        String caption = (String) photoBucket.get(Constants.KEY_CAPTION);
+        photoBucketViewHolder.mCaptionTextView.setText(caption);
+        String url = (String) photoBucket.get(Constants.KEY_URL);
+        photoBucketViewHolder.mUrlTextView.setText(url);
     }
 
     @Override
@@ -79,14 +79,14 @@ public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter
         return mPhotoBucketSnapshots.size();
     }
 
-    class MovieQuoteViewHolder extends RecyclerView.ViewHolder {
-        private TextView mQuoteTextView;
-        private TextView mMovieTextView;
+    class PhotoBucketViewHolder extends RecyclerView.ViewHolder {
+        private TextView mCaptionTextView;
+        private TextView mUrlTextView;
 
-        public MovieQuoteViewHolder(View itemView){
+        public PhotoBucketViewHolder(View itemView){
             super(itemView);
-            mQuoteTextView = itemView.findViewById(R.id.itemview_caption);
-            mMovieTextView = itemView.findViewById(R.id.itemview_url);
+            mCaptionTextView = itemView.findViewById(R.id.itemview_caption);
+            mUrlTextView = itemView.findViewById(R.id.itemview_url);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

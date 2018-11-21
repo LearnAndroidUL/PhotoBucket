@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        final PhotoBucketAdapter movieQuoteAdapter = new PhotoBucketAdapter();
-        recyclerView.setAdapter(movieQuoteAdapter);
+        final PhotoBucketAdapter photoBucketAdapter = new PhotoBucketAdapter();
+        recyclerView.setAdapter(photoBucketAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +53,15 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String quote = captionEditTextView.getText().toString();
-                String movie = urlEditTextView.getText().toString();
+                String caption = captionEditTextView.getText().toString();
+                String url = urlEditTextView.getText().toString();
 
-//                  create new item with captured details
-                Map<String, Object> movieQuote = new HashMap< >();
-                movieQuote.put(Constants.KEY_CAPTION,quote);
-                movieQuote.put(Constants.KEY_URL,movie);
-                movieQuote.put(Constants.KEY_CREATED, new Date());
-                FirebaseFirestore.getInstance().collection(Constants.firebase_collection_pb).add(movieQuote);
+//              create new item with captured details
+                Map<String, Object> photoBucket = new HashMap< >();
+                photoBucket.put(Constants.KEY_CAPTION,caption);
+                photoBucket.put(Constants.KEY_URL,url);
+                photoBucket.put(Constants.KEY_CREATED, new Date());
+                FirebaseFirestore.getInstance().collection(Constants.firebase_collection_pb).add(photoBucket);
             }
         });
         builder.create().show();
