@@ -1,10 +1,8 @@
 package io.ruszkipista.photobucket;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +13,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -46,7 +43,7 @@ public class DetailActivity extends AppCompatActivity {
         mUrlTextView = findViewById(R.id.detail_url_field);
 
         String docId = getIntent().getStringExtra(Constants.EXTRA_DOC_ID);
-        mDocRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_mq).document(docId);
+        mDocRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_pb).document(docId);
         mDocRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
