@@ -3,11 +3,11 @@
     <string name="action_delete">Delete</string>
     <string name="default_caption">Caption</string>
     <string name="default_url">URL goes here</string>
-    <string name="dialog_title_add">Add a picture</string>
-    <string name="dialog_title_edit">Edit picture</string>
+    <string name="dialog_title_add">Add a Photo</string>
+    <string name="dialog_title_edit">Edit Photo</string>
     <string name="dialog_caption_hint">Enter caption for picture</string>
-    <string name="dialog_url_hint">Enter picture\'s URL</string>
-    <string name="detail_name">Photo Bucket - Detail</string>
+    <string name="dialog_url_hint">Enter photo\'s URL</string>
+    <string name="detail_name">Photo</string>
     <string name="detail_caption">Caption</string>
-    <string name="detail_url">Picture URL</string>
+    <string name="detail_url">Photo URL</string>
 </resources>

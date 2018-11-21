@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.koushikdutta.ion.Ion;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -28,7 +29,6 @@ import javax.annotation.Nullable;
 
 public class DetailActivity extends AppCompatActivity {
     private TextView mCaptionTextView;
-    private TextView mUrlTextView;
     private ImageView mPictureImageView;
     private DocumentReference mDocRef;
     private DocumentSnapshot mDocSnapshot;
@@ -42,7 +42,6 @@ public class DetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mCaptionTextView = findViewById(R.id.detail_caption_field);
-        mUrlTextView = findViewById(R.id.detail_url_field);
         mPictureImageView = findViewById(R.id.detail_picture);
 
         String docId = getIntent().getStringExtra(Constants.EXTRA_DOC_ID);
@@ -56,8 +55,7 @@ public class DetailActivity extends AppCompatActivity {
                 } else {
                     if (documentSnapshot.exists()){
                         mCaptionTextView.setText((String)documentSnapshot.get(Constants.KEY_CAPTION));
-                        mUrlTextView.setText((String)documentSnapshot.get(Constants.KEY_URL));
-                        mPictureImageView.setImageResource(R.mipmap.ic_launcher);
+                        Ion.with(mPictureImageView).load((String)documentSnapshot.get(Constants.KEY_URL));
                         mDocSnapshot = documentSnapshot;
                     }
                 }
