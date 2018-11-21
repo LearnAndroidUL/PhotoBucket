@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 
@@ -45,13 +46,6 @@ public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter
                 });
     }
 
-
-    public void removePhotoBucket(int position){
-        mPhotoBucketSnapshots.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(0, mPhotoBucketSnapshots.size());
-    }
-
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
@@ -70,8 +64,6 @@ public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter
         DocumentSnapshot photoBucket = mPhotoBucketSnapshots.get(i);
         String caption = (String) photoBucket.get(Constants.KEY_CAPTION);
         photoBucketViewHolder.mCaptionTextView.setText(caption);
-        String url = (String) photoBucket.get(Constants.KEY_URL);
-        photoBucketViewHolder.mUrlTextView.setText(url);
     }
 
     @Override
@@ -81,12 +73,10 @@ public class PhotoBucketAdapter  extends RecyclerView.Adapter<PhotoBucketAdapter
 
     class PhotoBucketViewHolder extends RecyclerView.ViewHolder {
         private TextView mCaptionTextView;
-        private TextView mUrlTextView;
 
         public PhotoBucketViewHolder(View itemView){
             super(itemView);
             mCaptionTextView = itemView.findViewById(R.id.itemview_caption);
-            mUrlTextView = itemView.findViewById(R.id.itemview_url);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.firestore.DocumentReference;
@@ -28,6 +29,7 @@ import javax.annotation.Nullable;
 public class DetailActivity extends AppCompatActivity {
     private TextView mCaptionTextView;
     private TextView mUrlTextView;
+    private ImageView mPictureImageView;
     private DocumentReference mDocRef;
     private DocumentSnapshot mDocSnapshot;
 
@@ -41,6 +43,7 @@ public class DetailActivity extends AppCompatActivity {
 
         mCaptionTextView = findViewById(R.id.detail_caption_field);
         mUrlTextView = findViewById(R.id.detail_url_field);
+        mPictureImageView = findViewById(R.id.detail_picture);
 
         String docId = getIntent().getStringExtra(Constants.EXTRA_DOC_ID);
         mDocRef = FirebaseFirestore.getInstance().collection(Constants.firebase_collection_pb).document(docId);
@@ -54,6 +57,7 @@ public class DetailActivity extends AppCompatActivity {
                     if (documentSnapshot.exists()){
                         mCaptionTextView.setText((String)documentSnapshot.get(Constants.KEY_CAPTION));
                         mUrlTextView.setText((String)documentSnapshot.get(Constants.KEY_URL));
+                        mPictureImageView.setImageResource(R.mipmap.ic_launcher);
                         mDocSnapshot = documentSnapshot;
                     }
                 }
